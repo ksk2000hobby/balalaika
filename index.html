@@ -222,339 +222,338 @@
     </style>
 </head>
 <body>
-    <h1>🎶  Народное художественное творчество </h1>
-    <p class="subtitle">
-         <h1> Балалайка-прима </h1>
-        3 струны: <strong>Ми — Ми — Ля</strong> (E4–E4–A3)<br>
-        Нажимай клавиши, чтобы играть ноты
-    </p>
+<h1>🎶  Народное художественное творчество </h1>
+<p class="subtitle">
+    3 струны: <strong>Ми — Ми — Ля</strong> (E4–E4–A3)<br>
+    Нажимай клавиши, чтобы играть ноты
+</p>
 
-    <div class="container">
-        <div class="balalaika">
-            <div class="head">
-                <div class="peg" title="Ля (A3)"></div>
-                <div class="peg" title="Ми (E4)"></div>
-                <div class="peg" title="Ми (E4)"></div>
-            </div>
-            <div class="string-labels">
-                <span class="str-label">E</span>
-                <span class="str-label">E</span>
-                <span class="str-label">A</span>
-            </div>
-            <div class="neck"></div>
-            <div class="frets-layer" id="fretsLayer"></div>
-            <div class="fingerboard" id="fingerboard"></div>
-            <div class="body-bg"></div>
-            <div class="body-main"></div>
-            <div class="soundhole"></div>
-            <div class="bridge"></div>
-            <div class="strings-container">
-                <div class="string string-3" id="str2" title="Ля"></div>
-                <div class="string string-2" id="str1" title="Ми"></div>
-                <div class="string string-1" id="str0" title="Ми"></div>
-            </div>
+<div class="container">
+    <div class="balalaika">
+        <div class="head">
+            <div class="peg" title="Ля (A3)"></div>
+            <div class="peg" title="Ми (E4)"></div>
+            <div class="peg" title="Ми (E4)"></div>
         </div>
-
-        <div class="tuning-info">
-            <span><span class="dot dot-e"></span> 1-я струна: Ми (E4)</span>
-            <span><span class="dot dot-e"></span> 2-я струна: Ми (E4)</span>
-            <span><span class="dot dot-a"></span> 3-я струна: Ля (A3)</span>
+        <div class="string-labels">
+            <span class="str-label">E</span>
+            <span class="str-label">E</span>
+            <span class="str-label">A</span>
         </div>
-
-        <div class="current-note" id="currentNote">&nbsp;</div>
-        <div id="recommendation"></div>
-
-        <div class="keys-panel">
-            <button class="note-btn" data-note="0">До<span class="key-hint">A</span></button>
-            <button class="note-btn" data-note="1">Ре<span class="key-hint">S</span></button>
-            <button class="note-btn" data-note="2">Ми<span class="key-hint">D</span></button>
-            <button class="note-btn" data-note="3">Фа<span class="key-hint">F</span></button>
-            <button class="note-btn" data-note="4">Соль<span class="key-hint">G</span></button>
-            <button class="note-btn" data-note="5">Ля<span class="key-hint">H</span></button>
-            <button class="note-btn" data-note="6">Си<span class="key-hint">J</span></button>
-            <button class="note-btn open-strings" id="openBtn">Открытые струны (Ми-Ми-Ля)<span class="key-hint">Клавиша: Z</span></button>
+        <div class="neck"></div>
+        <div class="frets-layer" id="fretsLayer"></div>
+        <div class="fingerboard" id="fingerboard"></div>
+        <div class="body-bg"></div>
+        <div class="body-main"></div>
+        <div class="soundhole"></div>
+        <div class="bridge"></div>
+        <div class="strings-container">
+            <div class="string string-3" id="str2" title="Ля"></div>
+            <div class="string string-2" id="str1" title="Ми"></div>
+            <div class="string string-1" id="str0" title="Ми"></div>
         </div>
     </div>
 
-    <p class="instructions">
-        Клавиши <strong>A S D F G H J</strong> — ноты | <strong>Z</strong> — открытые струны<br>
-        На грифе подсвечивается лад, который нужно прижать
-    </p>
+    <div class="tuning-info">
+        <span><span class="dot dot-e"></span> 1-я струна: Ми (E4)</span>
+        <span><span class="dot dot-e"></span> 2-я струна: Ми (E4)</span>
+        <span><span class="dot dot-a"></span> 3-я струна: Ля (A3)</span>
+    </div>
 
-    <script>
-        // ==================== АУДИО ====================
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        let audioCtx = null;
-        let timerStarted = false;
-        let recommendationShown = false;
+    <div class="current-note" id="currentNote">&nbsp;</div>
+    <div id="recommendation"></div>
 
-        function ensureAudioCtx() {
-            if (!audioCtx) audioCtx = new AudioContext();
-            if (audioCtx.state === 'suspended') audioCtx.resume();
-            
-            // Запускаем 3-минутный таймер при первом использовании
-            if (!timerStarted) {
-                timerStarted = true;
-                startRecommendationTimer();
+    <div class="keys-panel">
+        <button class="note-btn" data-note="0">До<span class="key-hint">A</span></button>
+        <button class="note-btn" data-note="1">Ре<span class="key-hint">S</span></button>
+        <button class="note-btn" data-note="2">Ми<span class="key-hint">D</span></button>
+        <button class="note-btn" data-note="3">Фа<span class="key-hint">F</span></button>
+        <button class="note-btn" data-note="4">Соль<span class="key-hint">G</span></button>
+        <button class="note-btn" data-note="5">Ля<span class="key-hint">H</span></button>
+        <button class="note-btn" data-note="6">Си<span class="key-hint">J</span></button>
+        <button class="note-btn open-strings" id="openBtn">Открытые струны (Ми-Ми-Ля)<span class="key-hint">Клавиша: Z</span></button>
+    </div>
+</div>
+
+<p class="instructions">
+    Клавиши <strong>A S D F G H J</strong> — ноты | <strong>Z</strong> — открытые струны<br>
+    На грифе подсвечивается лад, который нужно прижать
+</p>
+
+<script>
+    // ==================== АУДИО ====================
+    const AudioContext = window.AudioContext || window.webkitAudioContext;
+    let audioCtx = null;
+    let timerStarted = false;
+    let recommendationShown = false;
+
+    function ensureAudioCtx() {
+        if (!audioCtx) audioCtx = new AudioContext();
+        if (audioCtx.state === 'suspended') audioCtx.resume();
+
+        // Запускаем 3-минутный таймер при первом использовании
+        if (!timerStarted) {
+            timerStarted = true;
+            startRecommendationTimer();
+        }
+    }
+
+    // ==================== ТАЙМЕР РЕКОМЕНДАЦИИ ====================
+    function startRecommendationTimer() {
+        setTimeout(() => {
+            if (!recommendationShown) {
+                showRecommendation();
+                recommendationShown = true;
             }
+        }, 3 * 60 * 1000); // 3 минуты
+    }
+
+    function showRecommendation() {
+        const rec = document.getElementById('recommendation');
+        rec.innerHTML = '🎻 Отлично играешь! Рекомендуем поступить на <strong> Народное художественное творчество </strong>!<br><span style="font-size:0.9rem;opacity:0.9">Твой талант заслуживает развития в народном искусстве 🌟</span>';
+        rec.className = 'recommendation';
+
+        // Анимация появления
+        rec.style.opacity = '0';
+        rec.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+            rec.style.transition = 'all 0.4s ease';
+            rec.style.opacity = '1';
+            rec.style.transform = 'scale(1)';
+        }, 10);
+    }
+
+    // Ноты 4-й октавы
+    const noteNames = ['До','Ре','Ми','Фа','Соль','Ля','Си'];
+    const noteFreqs = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88];
+    const noteKeys  = ['a','s','d','f','g','h','j'];
+    const openStrings = [329.63, 329.63, 220.00];
+
+    function fretForString(stringIndex, targetFreq) {
+        const openFreq = openStrings[stringIndex];
+        if (Math.abs(targetFreq - openFreq) < 0.5) return 0;
+        return Math.round(12 * Math.log2(targetFreq / openFreq));
+    }
+
+    // ==================== ЗВУК БАЛАЛАЙКИ ====================
+    function playBalalaikaString(freq, delay = 0) {
+        ensureAudioCtx();
+        const t = audioCtx.currentTime + delay;
+
+        const harmCount = 28;
+        const real = new Float32Array(harmCount + 1);
+        const imag = new Float32Array(harmCount + 1);
+        for (let i = 1; i <= harmCount; i++) {
+            imag[i] = 1.0 / Math.pow(i, 0.65);
+        }
+        const wave = audioCtx.createPeriodicWave(real, imag, { disableNormalization: false });
+
+        const osc = audioCtx.createOscillator();
+        osc.setPeriodicWave(wave);
+        osc.frequency.setValueAtTime(freq * 0.982, t);
+        osc.frequency.exponentialRampToValueAtTime(freq, t + 0.05);
+
+        const gain = audioCtx.createGain();
+        gain.gain.setValueAtTime(0, t);
+        gain.gain.linearRampToValueAtTime(0.32, t + 0.004);
+        gain.gain.exponentialRampToValueAtTime(0.04, t + 0.15);
+        gain.gain.exponentialRampToValueAtTime(0.001, t + 1.0);
+
+        const bodyFilter = audioCtx.createBiquadFilter();
+        bodyFilter.type = 'bandpass';
+        bodyFilter.frequency.setValueAtTime(700 + freq * 0.8, t);
+        bodyFilter.Q.setValueAtTime(3.5, t);
+
+        const bufLen = Math.floor(audioCtx.sampleRate * 0.035);
+        const buf = audioCtx.createBuffer(1, bufLen, audioCtx.sampleRate);
+        const d = buf.getChannelData(0);
+        for (let i = 0; i < bufLen; i++) d[i] = (Math.random() * 2 - 1) * 0.5;
+        const noise = audioCtx.createBufferSource();
+        noise.buffer = buf;
+        const nGain = audioCtx.createGain();
+        nGain.gain.setValueAtTime(0.1, t);
+        nGain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
+        const hp = audioCtx.createBiquadFilter();
+        hp.type = 'highpass';
+        hp.frequency.value = 2000;
+
+        osc.connect(bodyFilter);
+        bodyFilter.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        noise.connect(hp);
+        hp.connect(nGain);
+        nGain.connect(audioCtx.destination);
+
+        osc.start(t);
+        osc.stop(t + 1.3);
+        noise.start(t);
+        noise.stop(t + 0.07);
+    }
+
+    function playNote(index) {
+        const freq = noteFreqs[index];
+        playBalalaikaString(freq, 0.000);
+        playBalalaikaString(freq, 0.005);
+        playBalalaikaString(freq, 0.010);
+
+        highlightFrets(index);
+        animateStrings();
+        createParticles(index);
+        createNoteWave(index);
+
+        // 🔹 Убрано отображение Гц — только название ноты
+        document.getElementById('currentNote').textContent = noteNames[index];
+    }
+
+    function playOpenStrings() {
+        playBalalaikaString(openStrings[0], 0.000);
+        playBalalaikaString(openStrings[1], 0.006);
+        playBalalaikaString(openStrings[2], 0.012);
+
+        highlightFrets(-1);
+        animateStrings();
+        createParticles(2);
+        createNoteWave(2);
+
+        document.getElementById('currentNote').textContent = 'Ми–Ми–Ля';
+    }
+
+    // ==================== ГРИФ: ЛАДЫ ====================
+    const NUM_FRETS = 12;
+    const fingerboard = document.getElementById('fingerboard');
+    const fretsLayer = document.getElementById('fretsLayer');
+    const fretZones = [];
+
+    for (let i = 0; i < NUM_FRETS; i++) {
+        const zone = document.createElement('div');
+        zone.className = 'fret-zone';
+        zone.dataset.fret = i;
+        fingerboard.appendChild(zone);
+        fretZones.push(zone);
+
+        const mark = document.createElement('div');
+        mark.className = 'fret-mark';
+        mark.style.top = ((i + 1) / NUM_FRETS * 100) + '%';
+        fretsLayer.appendChild(mark);
+
+        if ([3, 5, 7, 9].includes(i)) {
+            const dot = document.createElement('div');
+            dot.className = 'fret-dot';
+            dot.style.top = ((i + 0.5) / NUM_FRETS * 100) + '%';
+            fretsLayer.appendChild(dot);
+            zone.appendChild(dot);
+        }
+    }
+
+    function highlightFrets(noteIndex) {
+        fretZones.forEach(z => { z.classList.remove('highlight', 'pressed'); });
+        document.querySelectorAll('.fret-mark').forEach(m => m.classList.remove('active'));
+        document.querySelectorAll('.fret-dot').forEach(d => d.classList.remove('active'));
+
+        if (noteIndex === -1) {
+            fretZones.forEach(z => z.classList.add('highlight'));
+            return;
         }
 
-        // ==================== ТАЙМЕР РЕКОМЕНДАЦИИ ====================
-        function startRecommendationTimer() {
-            setTimeout(() => {
-                if (!recommendationShown) {
-                    showRecommendation();
-                    recommendationShown = true;
-                }
-            }, 3 * 60 * 1000); // 3 минуты
-        }
+        const freq = noteFreqs[noteIndex];
+        const frets = [0, 1, 2].map(si => fretForString(si, freq));
 
-        function showRecommendation() {
-            const rec = document.getElementById('recommendation');
-            rec.innerHTML = '🎻 Отлично играешь! Рекомендуем поступить на <strong> Народное художественное творчество </strong>!<br><span style="font-size:0.9rem;opacity:0.9">Твой талант заслуживает развития в народном искусстве 🌟</span>';
-            rec.className = 'recommendation';
-            
-            // Анимация появления
-            rec.style.opacity = '0';
-            rec.style.transform = 'scale(0.9)';
-            setTimeout(() => {
-                rec.style.transition = 'all 0.4s ease';
-                rec.style.opacity = '1';
-                rec.style.transform = 'scale(1)';
-            }, 10);
-        }
-
-        // Ноты 4-й октавы
-        const noteNames = ['До','Ре','Ми','Фа','Соль','Ля','Си'];
-        const noteFreqs = [261.63, 293.66, 329.63, 349.23, 392.00, 440.00, 493.88];
-        const noteKeys  = ['a','s','d','f','g','h','j'];
-        const openStrings = [329.63, 329.63, 220.00];
-
-        function fretForString(stringIndex, targetFreq) {
-            const openFreq = openStrings[stringIndex];
-            if (Math.abs(targetFreq - openFreq) < 0.5) return 0;
-            return Math.round(12 * Math.log2(targetFreq / openFreq));
-        }
-
-        // ==================== ЗВУК БАЛАЛАЙКИ ====================
-        function playBalalaikaString(freq, delay = 0) {
-            ensureAudioCtx();
-            const t = audioCtx.currentTime + delay;
-
-            const harmCount = 28;
-            const real = new Float32Array(harmCount + 1);
-            const imag = new Float32Array(harmCount + 1);
-            for (let i = 1; i <= harmCount; i++) {
-                imag[i] = 1.0 / Math.pow(i, 0.65);
-            }
-            const wave = audioCtx.createPeriodicWave(real, imag, { disableNormalization: false });
-
-            const osc = audioCtx.createOscillator();
-            osc.setPeriodicWave(wave);
-            osc.frequency.setValueAtTime(freq * 0.982, t);
-            osc.frequency.exponentialRampToValueAtTime(freq, t + 0.05);
-
-            const gain = audioCtx.createGain();
-            gain.gain.setValueAtTime(0, t);
-            gain.gain.linearRampToValueAtTime(0.32, t + 0.004);
-            gain.gain.exponentialRampToValueAtTime(0.04, t + 0.15);
-            gain.gain.exponentialRampToValueAtTime(0.001, t + 1.0);
-
-            const bodyFilter = audioCtx.createBiquadFilter();
-            bodyFilter.type = 'bandpass';
-            bodyFilter.frequency.setValueAtTime(700 + freq * 0.8, t);
-            bodyFilter.Q.setValueAtTime(3.5, t);
-
-            const bufLen = Math.floor(audioCtx.sampleRate * 0.035);
-            const buf = audioCtx.createBuffer(1, bufLen, audioCtx.sampleRate);
-            const d = buf.getChannelData(0);
-            for (let i = 0; i < bufLen; i++) d[i] = (Math.random() * 2 - 1) * 0.5;
-            const noise = audioCtx.createBufferSource();
-            noise.buffer = buf;
-            const nGain = audioCtx.createGain();
-            nGain.gain.setValueAtTime(0.1, t);
-            nGain.gain.exponentialRampToValueAtTime(0.001, t + 0.05);
-            const hp = audioCtx.createBiquadFilter();
-            hp.type = 'highpass';
-            hp.frequency.value = 2000;
-
-            osc.connect(bodyFilter);
-            bodyFilter.connect(gain);
-            gain.connect(audioCtx.destination);
-
-            noise.connect(hp);
-            hp.connect(nGain);
-            nGain.connect(audioCtx.destination);
-
-            osc.start(t);
-            osc.stop(t + 1.3);
-            noise.start(t);
-            noise.stop(t + 0.07);
-        }
-
-        function playNote(index) {
-            const freq = noteFreqs[index];
-            playBalalaikaString(freq, 0.000);
-            playBalalaikaString(freq, 0.005);
-            playBalalaikaString(freq, 0.010);
-
-            highlightFrets(index);
-            animateStrings();
-            createParticles(index);
-            createNoteWave(index);
-
-            // 🔹 Убрано отображение Гц — только название ноты
-            document.getElementById('currentNote').textContent = noteNames[index];
-        }
-
-        function playOpenStrings() {
-            playBalalaikaString(openStrings[0], 0.000);
-            playBalalaikaString(openStrings[1], 0.006);
-            playBalalaikaString(openStrings[2], 0.012);
-
-            highlightFrets(-1);
-            animateStrings();
-            createParticles(2);
-            createNoteWave(2);
-
-            document.getElementById('currentNote').textContent = 'Ми–Ми–Ля';
-        }
-
-        // ==================== ГРИФ: ЛАДЫ ====================
-        const NUM_FRETS = 12;
-        const fingerboard = document.getElementById('fingerboard');
-        const fretsLayer = document.getElementById('fretsLayer');
-        const fretZones = [];
-
-        for (let i = 0; i < NUM_FRETS; i++) {
-            const zone = document.createElement('div');
-            zone.className = 'fret-zone';
-            zone.dataset.fret = i;
-            fingerboard.appendChild(zone);
-            fretZones.push(zone);
-
-            const mark = document.createElement('div');
-            mark.className = 'fret-mark';
-            mark.style.top = ((i + 1) / NUM_FRETS * 100) + '%';
-            fretsLayer.appendChild(mark);
-
-            if ([3, 5, 7, 9].includes(i)) {
-                const dot = document.createElement('div');
-                dot.className = 'fret-dot';
-                dot.style.top = ((i + 0.5) / NUM_FRETS * 100) + '%';
-                fretsLayer.appendChild(dot);
-                zone.appendChild(dot);
-            }
-        }
-
-        function highlightFrets(noteIndex) {
-            fretZones.forEach(z => { z.classList.remove('highlight', 'pressed'); });
-            document.querySelectorAll('.fret-mark').forEach(m => m.classList.remove('active'));
-            document.querySelectorAll('.fret-dot').forEach(d => d.classList.remove('active'));
-
-            if (noteIndex === -1) {
-                fretZones.forEach(z => z.classList.add('highlight'));
-                return;
-            }
-
-            const freq = noteFreqs[noteIndex];
-            const frets = [0, 1, 2].map(si => fretForString(si, freq));
-
-            frets.forEach(fret => {
-                if (fret >= 0 && fret < NUM_FRETS) {
-                    fretZones[fret].classList.add('pressed');
-                }
-            });
-
-            const uniqueFrets = [...new Set(frets.filter(f => f >= 0 && f < NUM_FRETS))];
-            uniqueFrets.forEach(f => {
-                const marks = fretsLayer.querySelectorAll('.fret-mark');
-                if (marks[f]) marks[f].classList.add('active');
-                fretZones[f].querySelectorAll('.fret-dot').forEach(d => d.classList.add('active'));
-            });
-        }
-
-        // ==================== АНИМАЦИЯ ====================
-        function animateStrings() {
-            ['str0','str1','str2'].forEach(id => {
-                const s = document.getElementById(id);
-                s.classList.remove('vibrating', 'glow');
-                void s.offsetWidth;
-                s.classList.add('vibrating', 'glow');
-                setTimeout(() => s.classList.remove('vibrating', 'glow'), 1000);
-            });
-        }
-
-        function createParticles(noteIndex) {
-            const balalaika = document.querySelector('.balalaika');
-            const colors = ['#f4d35e','#ff6b6b','#48dbfb','#ff9ff3','#54a0ff','#5f27cd','#01a3a4'];
-            for (let i = 0; i < 8; i++) {
-                const p = document.createElement('div');
-                p.className = 'particle';
-                const sz = Math.random() * 6 + 3;
-                p.style.width = sz + 'px'; p.style.height = sz + 'px';
-                p.style.background = colors[noteIndex];
-                p.style.left = (140 + (Math.random() - 0.5) * 80) + 'px';
-                p.style.top = (380 + Math.random() * 60) + 'px';
-                p.style.setProperty('--tx', (Math.random() - 0.5) * 130 + 'px');
-                p.style.setProperty('--ty', -(Math.random() * 100 + 20) + 'px');
-                balalaika.appendChild(p);
-                setTimeout(() => p.remove(), 800);
-            }
-        }
-
-        function createNoteWave(noteIndex) {
-            const balalaika = document.querySelector('.balalaika');
-            const nw = document.createElement('div');
-            nw.className = 'note-wave';
-            nw.textContent = ['🎵','🎶','♪','♫','🎼'][Math.floor(Math.random() * 5)];
-            nw.style.left = (120 + Math.random() * 60) + 'px';
-            nw.style.top = '350px';
-            balalaika.appendChild(nw);
-            setTimeout(() => nw.remove(), 1200);
-        }
-
-        // ==================== УПРАВЛЕНИЕ ====================
-        document.querySelectorAll('.note-btn[data-note]').forEach(btn => {
-            const handler = (e) => {
-                if (e) e.preventDefault();
-                playNote(parseInt(btn.dataset.note));
-                btn.classList.add('pressed');
-            };
-            btn.addEventListener('mousedown', handler);
-            btn.addEventListener('touchstart', handler);
-            btn.addEventListener('mouseup', () => btn.classList.remove('pressed'));
-            btn.addEventListener('mouseleave', () => btn.classList.remove('pressed'));
-            btn.addEventListener('touchend', () => btn.classList.remove('pressed'));
-        });
-
-        const openBtn = document.getElementById('openBtn');
-        openBtn.addEventListener('mousedown', () => { playOpenStrings(); openBtn.classList.add('pressed'); });
-        openBtn.addEventListener('touchstart', (e) => { e.preventDefault(); playOpenStrings(); openBtn.classList.add('pressed'); });
-        openBtn.addEventListener('mouseup', () => openBtn.classList.remove('pressed'));
-        openBtn.addEventListener('mouseleave', () => openBtn.classList.remove('pressed'));
-        openBtn.addEventListener('touchend', () => openBtn.classList.remove('pressed'));
-
-        document.addEventListener('keydown', (e) => {
-            if (e.repeat) return;
-            const key = e.key.toLowerCase();
-            const idx = noteKeys.indexOf(key);
-            if (idx !== -1) {
-                playNote(idx);
-                const btn = document.querySelector(`.note-btn[data-note="${idx}"]`);
-                if (btn) btn.classList.add('pressed');
-            }
-            if (key === 'z') {
-                playOpenStrings();
-                openBtn.classList.add('pressed');
+        frets.forEach(fret => {
+            if (fret >= 0 && fret < NUM_FRETS) {
+                fretZones[fret].classList.add('pressed');
             }
         });
-        document.addEventListener('keyup', (e) => {
-            const key = e.key.toLowerCase();
-            const idx = noteKeys.indexOf(key);
-            if (idx !== -1) document.querySelector(`.note-btn[data-note="${idx}"]`)?.classList.remove('pressed');
-            if (key === 'z') openBtn.classList.remove('pressed');
+
+        const uniqueFrets = [...new Set(frets.filter(f => f >= 0 && f < NUM_FRETS))];
+        uniqueFrets.forEach(f => {
+            const marks = fretsLayer.querySelectorAll('.fret-mark');
+            if (marks[f]) marks[f].classList.add('active');
+            fretZones[f].querySelectorAll('.fret-dot').forEach(d => d.classList.add('active'));
         });
-    </script>
+    }
+
+    // ==================== АНИМАЦИЯ ====================
+    function animateStrings() {
+        ['str0','str1','str2'].forEach(id => {
+            const s = document.getElementById(id);
+            s.classList.remove('vibrating', 'glow');
+            void s.offsetWidth;
+            s.classList.add('vibrating', 'glow');
+            setTimeout(() => s.classList.remove('vibrating', 'glow'), 1000);
+        });
+    }
+
+    function createParticles(noteIndex) {
+        const balalaika = document.querySelector('.balalaika');
+        const colors = ['#f4d35e','#ff6b6b','#48dbfb','#ff9ff3','#54a0ff','#5f27cd','#01a3a4'];
+        for (let i = 0; i < 8; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const sz = Math.random() * 6 + 3;
+            p.style.width = sz + 'px'; p.style.height = sz + 'px';
+            p.style.background = colors[noteIndex];
+            p.style.left = (140 + (Math.random() - 0.5) * 80) + 'px';
+            p.style.top = (380 + Math.random() * 60) + 'px';
+            p.style.setProperty('--tx', (Math.random() - 0.5) * 130 + 'px');
+            p.style.setProperty('--ty', -(Math.random() * 100 + 20) + 'px');
+            balalaika.appendChild(p);
+            setTimeout(() => p.remove(), 800);
+        }
+    }
+
+    function createNoteWave(noteIndex) {
+        const balalaika = document.querySelector('.balalaika');
+        const nw = document.createElement('div');
+        nw.className = 'note-wave';
+        nw.textContent = ['🎵','🎶','♪','♫','🎼'][Math.floor(Math.random() * 5)];
+        nw.style.left = (120 + Math.random() * 60) + 'px';
+        nw.style.top = '350px';
+        balalaika.appendChild(nw);
+        setTimeout(() => nw.remove(), 1200);
+    }
+
+    // ==================== УПРАВЛЕНИЕ ====================
+    document.querySelectorAll('.note-btn[data-note]').forEach(btn => {
+        const handler = (e) => {
+            if (e) e.preventDefault();
+            playNote(parseInt(btn.dataset.note));
+            btn.classList.add('pressed');
+        };
+        btn.addEventListener('mousedown', handler);
+        btn.addEventListener('touchstart', handler);
+        btn.addEventListener('mouseup', () => btn.classList.remove('pressed'));
+        btn.addEventListener('mouseleave', () => btn.classList.remove('pressed'));
+        btn.addEventListener('touchend', () => btn.classList.remove('pressed'));
+    });
+
+    const openBtn = document.getElementById('openBtn');
+    openBtn.addEventListener('mousedown', () => { playOpenStrings(); openBtn.classList.add('pressed'); });
+    openBtn.addEventListener('touchstart', (e) => { e.preventDefault(); playOpenStrings(); openBtn.classList.add('pressed'); });
+    openBtn.addEventListener('mouseup', () => openBtn.classList.remove('pressed'));
+    openBtn.addEventListener('mouseleave', () => openBtn.classList.remove('pressed'));
+    openBtn.addEventListener('touchend', () => openBtn.classList.remove('pressed'));
+
+    document.addEventListener('keydown', (e) => {
+        if (e.repeat) return;
+        const key = e.key.toLowerCase();
+        const idx = noteKeys.indexOf(key);
+        if (idx !== -1) {
+            playNote(idx);
+            const btn = document.querySelector(`.note-btn[data-note="${idx}"]`);
+            if (btn) btn.classList.add('pressed');
+        }
+        if (key === 'z') {
+            playOpenStrings();
+            openBtn.classList.add('pressed');
+        }
+    });
+    document.addEventListener('keyup', (e) => {
+        const key = e.key.toLowerCase();
+        const idx = noteKeys.indexOf(key);
+        if (idx !== -1) document.querySelector(`.note-btn[data-note="${idx}"]`)?.classList.remove('pressed');
+        if (key === 'z') openBtn.classList.remove('pressed');
+    });
+</script>
 </body>
 </html>
